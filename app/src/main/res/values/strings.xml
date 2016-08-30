@@ -4,5 +4,4 @@
     <string name="txtConsignes">Un chiffre aléatoire entre 1 et 100 à été généré.\n Vous devez le trouver en cinq essais maximum.</string>
     <string name="txtButton">Valider</string>
     <string name="txtResultat"></string>
-
 </resources>

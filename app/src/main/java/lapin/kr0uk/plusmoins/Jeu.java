@@ -2,6 +2,7 @@ package lapin.kr0uk.plusmoins;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ public class Jeu extends AppCompatActivity {
     int nbGenere = rnd.nextInt(100)+1;
     int reponse;
     int nbErreurs = 0;
+
     String debug = Integer.toString(nbGenere);
 
     TextView txtStatut ; // texte pour vérifier la victoire/défaite
@@ -76,7 +78,7 @@ public class Jeu extends AppCompatActivity {
 
             if (reponse == nbGenere ) { // on vérifie si la réponse est juste
                 strReponse = "Félicitations !";
-            } else if (reponse < nbGenere) { //
+            } else if (reponse < nbGenere) {  // On gère les deux cas possibles
                 strReponse = "Le bon numéro est PLUS GRAND que celui que vous avez tapé.";
             }
             else {
