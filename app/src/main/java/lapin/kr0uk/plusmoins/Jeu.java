@@ -15,14 +15,14 @@ import java.util.Random;
 public class Jeu extends AppCompatActivity {
 
     // On déclare les variables
-    Random rnd = new Random ();
-    int nbGenere = rnd.nextInt(100)+1;
+    Random rnd = new Random();
+    int nbGenere = rnd.nextInt(100) + 1;
     int reponse;
     int nbErreurs = 0;
 
     String debug = Integer.toString(nbGenere);
 
-    TextView txtStatut ; // texte pour vérifier la victoire/défaite
+    TextView txtStatut; // texte pour vérifier la victoire/défaite
     TextView txtResultat; // texte qui indique plus/moins
     EditText txtInputReponse; // réponse de l'user
 
@@ -68,30 +68,32 @@ public class Jeu extends AppCompatActivity {
         });
     }
 
-    private void  verif(int reponse) { // On vérifie que ce soit juste ou non
+    private void verif(int reponse) { // On vérifie que ce soit juste ou non
         String strReponse = "";
 
-
-        if (nbErreurs<5) {
+        try {
 
             nbErreurs++;
+            if (nbErreurs < 5) {
 
-            if (reponse == nbGenere ) { // on vérifie si la réponse est juste
-                strReponse = "Félicitations !";
-            } else if (reponse < nbGenere) {  // On gère les deux cas possibles
-                strReponse = "Le bon numéro est PLUS GRAND que celui que vous avez tapé.";
-            }
-            else {
-                strReponse = "Le bon numéro est PLUS PETIT que celui que vous avez tapé.";
-            }
 
+                if (reponse == nbGenere) { // on vérifie si la réponse est juste
+                    strReponse = "Félicitations !";
+                } else if (reponse < nbGenere) {  // On gère les deux cas possibles
+                    strReponse = "Le bon numéro est PLUS GRAND que celui que vous avez tapé.";
+                } else {
+                    strReponse = "Le bon numéro est PLUS PETIT que celui que vous avez tapé.";
+                }
+
+            } else {
+                strReponse = "Vous avez perdu, le bon numéro était " + nbGenere;
+            }
+        } finally {
+
+            String sEssais = "Vous êtes à " + nbErreurs + " Essai(s)";
+            txtStatut.setText(sEssais);
+            txtResultat.setText(strReponse);
         }
-        else {
-            strReponse = "Vous avez perdu, le bon numéro était "+ nbGenere;
-        }
-        String sEssais = "Vous êtes à " +  nbErreurs + " Essai(s)";
-        txtResultat.setText(strReponse);
-        txtStatut.setText(sEssais);
 
     }
 }
