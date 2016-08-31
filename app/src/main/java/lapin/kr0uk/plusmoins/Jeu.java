@@ -17,15 +17,16 @@ public class Jeu extends AppCompatActivity {
     // On déclare les variables
     Random rnd = new Random();
     int nbGenere = rnd.nextInt(100) + 1;
-    int reponse;
     int nbErreurs = 0;
+    int reponse;
 
     String debug = Integer.toString(nbGenere);
 
     TextView txtStatut; // texte pour vérifier la victoire/défaite
     TextView txtResultat; // texte qui indique plus/moins
     EditText txtInputReponse; // réponse de l'user
-
+    Button btnReset;
+    Button btnValider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,13 +34,16 @@ public class Jeu extends AppCompatActivity {
         setContentView(R.layout.activity_jeu);
 
         // on lie le XML à Java
-        Button btnValider = (Button) findViewById(R.id.btnValider);
+        btnReset = (Button) findViewById(R.id.btnReset);
+        btnValider = (Button) findViewById(R.id.btnValider);
         txtStatut = (TextView) findViewById(R.id.txtStatut);
         txtResultat = (TextView) findViewById(R.id.txtResultat);
         txtInputReponse = (EditText) findViewById(R.id.txtInputReponse);
 
 
         // Listener sur le bouton
+
+        btnReset.setVisibility(View.INVISIBLE);
         btnValider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,7 +76,6 @@ public class Jeu extends AppCompatActivity {
         String strReponse = "";
 
         try {
-
             nbErreurs++;
             if (nbErreurs < 5) {
 
@@ -87,6 +90,7 @@ public class Jeu extends AppCompatActivity {
 
             } else {
                 strReponse = "Vous avez perdu, le bon numéro était " + nbGenere;
+                reset();
             }
         } finally {
 
@@ -96,6 +100,25 @@ public class Jeu extends AppCompatActivity {
         }
 
     }
+
+    public void reset() {
+
+        btnReset.setVisibility(View.VISIBLE);
+        btnReset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                nbGenere = rnd.nextInt(100) + 1;
+                nbErreurs = 0;
+                txtStatut.setText("");
+                txtResultat.setText("");
+
+            }
+        });
+
+    }
+
+
 }
 
 

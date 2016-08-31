@@ -55,10 +55,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnValider"
-        android:layout_below="@+id/txtInputReponse"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
         android:text="@string/txtButton"
-        android:onClick="btn_click"/>
+        android:layout_above="@+id/btnReset"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/txtBtnReset"
+        android:id="@+id/btnReset"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        />
 
 </RelativeLayout>
